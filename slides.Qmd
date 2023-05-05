@@ -1,0 +1,58 @@
+---
+title: "breedbase_slides"
+format: revealjs
+editor: visual
+---
+
+### Why? 
+
+------------------------------------------------------------------------
+
+-   Store observations at the touch of a button (i.e. from phone to Breedbase)
+
+-   Those observations are more organized than on a drive
+
+-   May contain timestamps/ other metadata
+
+-   (Underrated but) plays nicely with Windows
+
+```{r}
+library(QBMS)
+
+```
+
+------------------------------------------------------------------------
+
+### What is it good for?
+
+------------------------------------------------------------------------
+
+-   Clearly defined traits
+
+-   Clearly defined trials
+
+-   ALTs
+
+------------------------------------------------------------------------
+
+### What isn't it good for?
+
+-   On-the-fly observations/ traits
+
+-   Repeated measurements
+
+------------------------------------------------------------------------
+
+### Other (minor) hassles
+
+-   Configuring devices
+
+-   Passing data in can be finicky (for example, planning a trial)
+
+-   IMO these things can be dealt with but take some patience
+
+------------------------------------------------------------------------
+
+### Finally
+
+This is my (limited) view of Breedbase's capabilities. It can do many more things.
