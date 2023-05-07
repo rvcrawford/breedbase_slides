@@ -1,20 +1,23 @@
 ---
 title: "breedbase_slides"
-format: revealjs
+format: pptx
 editor: visual
+author: Solveig Hanson and Ryan Crawford
 ---
 
 ### Why?
 
-------------------------------------------------------------------------
+-   Store observations at the touch of a button via BrAPI
 
--   Store observations at the touch of a button (i.e. from phone to Breedbase)
+    -   From phone (via FieldBook or Excel) to BreedBase
 
--   Those observations are more organized than on a drive
+-   Observations are standardized and organized
 
--   May contain timestamps/ other metadata
+-   Observations may contain timestamps/ other metadata
 
--   (Underrated but) plays nicely with Windows
+-   (Underrated but) plays nicely with Excel
+
+-   Platform agnostic
 
 ```{r}
 library(QBMS)
@@ -25,13 +28,20 @@ library(QBMS)
 
 ### What is it good for?
 
-------------------------------------------------------------------------
-
 -   Clearly defined traits
 
+```{=html}
+<!-- -->
+```
 -   Clearly defined trials
 
--   ALTs
+-   ALT's
+
+-   Lots of potential for expansion
+
+------------------------------------------------------------------------
+
+![2023 NY Hairy Vetch Spring Stand](hairy_vetch_spr_stand.png)
 
 ------------------------------------------------------------------------
 
@@ -39,20 +49,46 @@ library(QBMS)
 
 -   On-the-fly observations/ traits
 
--   Repeated measurements
+-   Repeated measurements (may change)
+
+-   Non-standard variables between sites
+
+------------------------------------------------------------------------
+
+![CCB trait ontology](ontology_view.png)
 
 ------------------------------------------------------------------------
 
 ### Other (minor) hassles
 
--   Configuring devices
+-   Configuring devices (setting up BreedBase login in FieldBook)
 
 -   Passing data in can be finicky (for example, planning a trial)
 
 -   IMO these things can be dealt with but take some patience
 
+-   Nomenclature issues: row - column, not range - row, block vs. replication
+
 ------------------------------------------------------------------------
 
-### Finally
+### Possibilities
 
-This is my (limited) view of Breedbase's capabilities. It can do many more things.
+-   Data set creation across years and sites
+
+-   Accession searching
+
+------------------------------------------------------------------------
+
+![BreedBase Search Wizard](breedbase_search_wizard.png)
+
+------------------------------------------------------------------------
+
+### Even more possibilities
+
+-   Seedlot tracking
+
+-   Breeding nursery/ pedigree data
+
+-   Genomic data
+
+-   Soil/ weather data

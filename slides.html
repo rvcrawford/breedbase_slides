@@ -7,7 +7,7 @@
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.38">
+  <meta name="generator" content="quarto-1.2.335">
 
   <title>breedbase_slides</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,10 +18,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
   </style>
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -317,10 +322,13 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">breedbase_slides</h1>
-</section>
 
+<div class="quarto-title-authors">
+</div>
+
+</section>
 <section class="slide level2">
 
 <h3 id="why">Why?</h3>
@@ -328,10 +336,14 @@
 <section class="slide level2">
 
 <ul>
-<li><p>Store observations at the touch of a button (i.e.&nbsp;from phone to Breedbase)</p></li>
-<li><p>Those observations are more organized than on a drive</p></li>
-<li><p>May contain timestamps/ other metadata</p></li>
-<li><p>(Underrated but) plays nicely with Windows</p></li>
+<li><p>Store observations at the touch of a button via BrAPI</p>
+<ul>
+<li>From phone (via FieldBook or Excel) to BreedBase</li>
+</ul></li>
+<li><p>Observations are standardized and organized</p></li>
+<li><p>Observations may contain timestamps/ other metadata</p></li>
+<li><p>(Underrated but) plays nicely with Excel</p></li>
+<li><p>Platform agnostic</p></li>
 </ul>
 <div class="cell">
 
@@ -346,30 +358,55 @@
 <ul>
 <li><p>Clearly defined traits</p></li>
 <li><p>Clearly defined trials</p></li>
-<li><p>ALTs</p></li>
+<li><p>ALT’s</p></li>
+<li><p>Lots of potential for expansion</p></li>
 </ul>
 </section>
+<section class="slide level2">
+
+
+<img data-src="hairy_vetch_spr_stand.png" class="r-stretch quarto-figure-center"><p class="caption">2023 NY Hairy Vetch Spring Stand</p></section>
 <section class="slide level2">
 
 <h3 id="what-isnt-it-good-for">What isn’t it good for?</h3>
 <ul>
 <li><p>On-the-fly observations/ traits</p></li>
-<li><p>Repeated measurements</p></li>
+<li><p>Repeated measurements (may change)</p></li>
+<li><p>Non-standard variables between sites</p></li>
 </ul>
 </section>
+<section class="slide level2">
+
+
+<img data-src="ontology_view.png" class="r-stretch quarto-figure-center"><p class="caption">CCB trait ontology</p></section>
 <section class="slide level2">
 
 <h3 id="other-minor-hassles">Other (minor) hassles</h3>
 <ul>
-<li><p>Configuring devices</p></li>
+<li><p>Configuring devices (setting up BreedBase login in FieldBook)</p></li>
 <li><p>Passing data in can be finicky (for example, planning a trial)</p></li>
 <li><p>IMO these things can be dealt with but take some patience</p></li>
+<li><p>Nomenclature issues: row - column, not range - row, block vs.&nbsp;replication</p></li>
 </ul>
 </section>
 <section class="slide level2">
 
-<h3 id="finally">Finally</h3>
-<p>This is my (limited) view of Breedbase’s capabilities. It can do many more things.</p>
+<h3 id="possibilities">Possibilities</h3>
+<ul>
+<li><p>Data set creation across years and sites</p></li>
+<li><p>Accession searching</p></li>
+</ul>
+<h3 id="breedbase-search-wizard"><img data-src="breedbase_search_wizard.png" alt="BreedBase Search Wizard"></h3>
+</section>
+<section class="slide level2">
+
+<h3 id="even-more-possibilities">Even more possibilities</h3>
+<ul>
+<li><p>Seedlot tracking</p></li>
+<li><p>Breeding nursery/ pedigree data</p></li>
+<li><p>Genomic data</p></li>
+<li><p>Soil/ weather data</p></li>
+</ul>
 <div class="footer footer-default">
 
 </div>
@@ -591,12 +628,15 @@
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -607,13 +647,6 @@
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -665,7 +698,24 @@
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -695,31 +745,50 @@
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>
