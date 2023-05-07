@@ -29,14 +29,8 @@ library(QBMS)
 ### What is it good for?
 
 -   Clearly defined traits
-
-```{=html}
-<!-- -->
-```
 -   Clearly defined trials
-
 -   ALT's
-
 -   Lots of potential for expansion
 
 ------------------------------------------------------------------------
